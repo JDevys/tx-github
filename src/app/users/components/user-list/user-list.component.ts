@@ -8,7 +8,7 @@ import { UsersService } from '../../services/users.service';
 })
 export class UserListComponent implements OnInit {
 
-  private currentPage: number = 1;
+  private currentPage: number = 0;
   private usersPerPage: number = 12;
   users: any = [];
 
