@@ -12,7 +12,7 @@ export class UserCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.repoLink = `/users/${this.user.login}/repositories/0`;
+    this.repoLink = `/users/${this.user.login}/repositories/1`;
   }
   
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { RepositoriesService } from '../../services/repositories.service';
 
 @Component({
   selector: 'app-repository-list',
@@ -9,23 +10,27 @@ import { ActivatedRoute } from '@angular/router';
 export class RepositoryListComponent implements OnInit {
 
   private user: string = '';
-  private currentPage: string = '';
+  private currentPage: number = 0;
+  private usersPerPage: number = 12;
   repositories: any = [];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private reposService: RepositoriesService) { }
 
   ngOnInit() {
     this.route.paramMap
       .subscribe((params) => {
         this.user = params.get('login');
-        this.currentPage = params.get('page');
+        this.currentPage = Number(params.get('page'));
         this.loadRepositories();
       });
   }
 
   loadRepositories() {
-    this.repositories.push(this.user);
-    this.repositories.push(this.currentPage);
+    this.reposService.getRepos(this.user, this.currentPage, this.usersPerPage)
+      .subscribe((repos) => {
+        Array.prototype.push.apply(this.repositories, repos);
+        this.currentPage++;
+      });
   }
 
 }
