@@ -1,3 +1,14 @@
-<div *ngFor="let repository of repositories">
-    <p>{{repository.full_name}}</p>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="'/users'">Users</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{user}}</li>
+    </ol>
+</nav>
+
+<div class="users-list container m-4">
+    <div class="row">
+        <div class="col-sm-3 mt-4" *ngFor="let repo of repositories">
+            <repository-card [repository]="repo"></repository-card>
+        </div>
+    </div>
 </div>
