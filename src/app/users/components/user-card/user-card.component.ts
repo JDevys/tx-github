@@ -7,10 +7,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class UserCardComponent implements OnInit {
   @Input() user:any;
+  repoLink: string = '';
   
   constructor() { }
 
   ngOnInit() {
+    this.repoLink = `/users/${this.user.login}/repositories/0`;
   }
   
 }

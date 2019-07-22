@@ -14,16 +14,16 @@ export class UserListComponent implements OnInit {
 
   constructor(private usersService:UsersService) { }
 
+  ngOnInit() {
+    this.loadUsers();
+  }
+
   loadUsers() {
     this.usersService.getUsers(this.currentPage, this.usersPerPage)
       .subscribe((users) => {
         Array.prototype.push.apply(this.users, users);
         this.currentPage++;
       });
-  }
-
-  ngOnInit() {
-    this.loadUsers();
   }
 
 }
