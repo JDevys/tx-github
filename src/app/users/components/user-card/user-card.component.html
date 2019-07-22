@@ -1,0 +1,10 @@
+<div class="card">
+    <div *ngIf="!!user.avatar_url; then avatar else empty"></div>
+    <ng-template #avatar><img class="card-img-top" [src]="user.avatar_url" alt="User Avatar"></ng-template>
+    <ng-template #empty><img class="card-img-top" src="assets/img/generic-user.png" alt="User Avatar"></ng-template>
+    <div class="card-body">
+        <h5 class="card-title">{{user.login}}</h5>
+        <a [href]="user.html_url" target="_blank" class="card-link">View Profile</a>
+        <a [routerLink]="repoLink" class="card-link">Repositories</a>
+    </div>
+</div>

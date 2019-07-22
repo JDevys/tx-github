@@ -1,0 +1,14 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{repository.name}}</h5>
+        <p class="card-text text-muted">{{repository.description || 'N/A'}}</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Stars: </strong>{{repository.stargazers_count}}</li>
+            <li class="list-group-item"><strong>Open Issues: </strong>{{repository.open_issues_count}}</li>
+            <li class="list-group-item"><strong>Forks: </strong>{{repository.forks_count}}</li>
+        </ul>
+        <div class="card-body">
+            <a [href]="repository.html_url" target="_blank" class="card-link">View on GitHub</a>
+        </div>
+    </div>
+</div>
