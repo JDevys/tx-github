@@ -8,16 +8,22 @@ import { UsersService } from '../../services/users.service';
 })
 export class UserListComponent implements OnInit {
 
-  private currentPage = 1;
+  private currentPage = 0;
+  private usersPerPage = 12;
   users: any = [];
 
   constructor(private usersService:UsersService) { }
 
+  loadUsers() {
+    this.usersService.getUsers(this.currentPage, this.usersPerPage)
+      .subscribe((users) => {
+        Array.prototype.push.apply(this.users, users);
+        this.currentPage++;
+      });
+  }
+
   ngOnInit() {
-    this.usersService.getUsers(this.currentPage)
-    .subscribe((users) => {
-      this.users = users;
-    });
+    this.loadUsers();
   }
 
 }

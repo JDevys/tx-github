@@ -10,8 +10,9 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers(page: Number = 1) {
+  getUsers(page: number = 0, perPage: number = 10) {
+    let since: number = page * perPage;
     return this.http
-      .get(`${this.baseUrl}?page=${page}&per_page=30'`);
+      .get(`${this.baseUrl}?since=${since}&per_page=${perPage}`);
   }
 }
